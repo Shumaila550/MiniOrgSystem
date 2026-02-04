@@ -1,0 +1,108 @@
+from flask import Flask, request, redirect, session
+import sqlite3
+from werkzeug.security import generate_password_hash, check_password_hash
+from datetime import date
+
+app = Flask(__name__)
+app.secret_key = "supersecretkey"
+
+# ---------------- DATABASE ----------------
+def get_db():
+    return sqlite3.connect("organization.db")
+
+def init_db():
+    db = get_db()
+    c = db.cursor()
+
+    c.execute("""
+    CREATE TABLE IF NOT EXISTS users (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        username TEXT UNIQUE,
+        password TEXT,
+        role TEXT
+    )
+    """)
+
+    c.execute("""
+    CREATE TABLE IF NOT EXISTS attendance (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        username TEXT,
+        date TEXT,
+        status TEXT
+    )
+    """)
+
+    # Create default admin
+    c.execute("SELECT * FROM users WHERE username='admin'")
+    if not c.fetchone():
+        c.execute(
+            "INSERT INTO users VALUES (NULL,?,?,?)",
+            ("admin", generate_password_hash("admin123"), "admin")
+        )
+
+    db.commit()
+    db.close()
+
+init_db()
+
+# ---------------- CSS ----------------
+STYLE = """
+<style>
+body{font-family:Arial;background:#f4f6f8}
+.container{max-width:520px;margin:60px auto;background:white;padding:25px;border-radius:10px}
+h2{text-align:center}
+input,select,button{width:100%;padding:10px;margin-top:10px}
+button{background:#1abc9c;color:white;border:none}
+a{text-decoration:none;color:#1abc9c;display:block;margin-top:10px}
+table{width:100%;border-collapse:collapse;margin-top:15px}
+th,td{border:1px solid #ccc;padding:8px;text-align:center}
+.error{color:red;text-align:center}
+</style>
+"""
+
+# ---------------- LOGIN ----------------
+@app.route("/", methods=["GET","POST"])
+def login():
+    error=""
+    if request.method=="POST":
+        u=request.form["username"]
+        p=request.form["password"]
+
+        db=get_db()
+        c=db.cursor()
+        c.execute("SELECT password,role FROM users WHERE username=?", (u,))
+        user=c.fetchone()
+        db.close()
+
+        if user and check_password_hash(user[0],p):
+            session["user"]=u
+            session["role"]=user[1]
+            return redirect("/dashboard")
+        else:
+            error="Invalid credentials"
+
+    return f"""{STYLE}
+    <div class="container">
+    <h2>Login</h2>
+    <p class="error">{error}</p>
+    <form method="POST">
+    <input name="username" placeholder="Username" required>
+    <input type="password" name="password" placeholder="Password" required>
+    <button>Login</button>
+    </form>
+    <a href="/register">Register</a>
+    </div>"""
+
+# ---------------- REGISTER ----------------
+@app.route("/register", methods=["GET","POST"])
+def register():
+    error=""
+    if request.method=="POST":
+        u=request.form["username"]
+        p=generate_password_hash(request.form["password"])
+
+        try:
+            db=get_db()
+            c=db.cursor()
+            c.execute("INSERT INTO users VALUES (NULL,?,?,?)",(u,p,"user"))
+            db.commit(
