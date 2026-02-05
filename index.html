@@ -5,13 +5,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>NovaTech Solutions | Digital Agency</title>
 
-<!-- Bootstrap -->
+<!-- Bootstrap & Icons -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 
-
-  <style>
+<style>
 /* ===============================
    THEME VARIABLES
 ================================ */
@@ -28,32 +27,32 @@
 body.dark {
   --bg: #0b0f19;
   --bg-secondary: #111827;
-  --text: #f1f5f9;        /* MAIN TEXT FIX */
-  --text-muted: #cbd5e1; /* MUTED TEXT FIX */
+  --text: #f1f5f9;
+  --text-muted: #cbd5e1;
   --card: #0f172a;
   --accent: #3b82f6;
   --border: rgba(255,255,255,0.08);
 }
 
 /* ===============================
-   GLOBAL STYLES
+   GLOBAL
 ================================ */
 body {
   font-family: 'Inter', sans-serif;
   background: var(--bg);
   color: var(--text);
-  transition: background 0.3s ease, color 0.3s ease;
+  transition: all 0.3s ease;
 }
 
 section {
-  padding: 90px 0;
+  padding: 100px 0;
 }
 
 h1, h2, h3, h4, h5, h6 {
   color: var(--text);
 }
 
-p, span, li, small, label {
+p, small {
   color: var(--text-muted);
 }
 
@@ -86,7 +85,7 @@ p, span, li, small, label {
 }
 
 .hero-title {
-  font-size: 3rem;
+  font-size: 3.2rem;
   font-weight: 700;
 }
 
@@ -96,18 +95,14 @@ p, span, li, small, label {
 .card {
   background: var(--card);
   border: 1px solid var(--border);
-  border-radius: 16px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.08);
-  transition: transform 0.3s, box-shadow 0.3s;
+  border-radius: 18px;
+  overflow: hidden;
+  transition: all 0.3s ease;
 }
 
 .card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 20px 40px rgba(0,0,0,0.15);
-}
-
-.card h6 {
-  color: var(--text);
+  transform: translateY(-10px);
+  box-shadow: 0 25px 40px rgba(0,0,0,0.15);
 }
 
 /* ===============================
@@ -118,11 +113,11 @@ p, span, li, small, label {
   height: 140px;
   border-radius: 50%;
   object-fit: cover;
-  border: 3px solid var(--accent);
+  border: 4px solid var(--accent);
 }
 
 /* ===============================
-   FORMS (IMPORTANT FIX)
+   FORMS
 ================================ */
 .form-control {
   background: var(--bg);
@@ -157,7 +152,6 @@ footer {
   background: transparent;
   color: var(--text);
 }
-
 </style>
 </head>
 
@@ -171,13 +165,13 @@ footer {
       <span class="navbar-toggler-icon"></span>
     </button>
     <div id="nav" class="collapse navbar-collapse">
-      <ul class="navbar-nav ms-auto align-items-lg-center">
+      <ul class="navbar-nav ms-auto align-items-center">
         <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
         <li class="nav-item"><a class="nav-link" href="#team">Team</a></li>
         <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
-        <li class="nav-item ms-lg-3">
+        <li class="nav-item ms-3">
           <button class="btn theme-btn btn-sm" onclick="toggleTheme()">
-            <i class="bi bi-moon-stars"></i>
+            <i id="themeIcon" class="bi bi-moon-stars"></i>
           </button>
         </li>
       </ul>
@@ -191,12 +185,13 @@ footer {
     <div class="row align-items-center">
       <div class="col-lg-6">
         <h1 class="hero-title">
-          Building Digital Experiences<br>That Drive Growth
+          Building Digital Products<br>That Power Businesses
         </h1>
-        <p class="lead text-muted mt-3">
-          We design and develop premium websites, applications, and brands for modern businesses.
+        <p class="lead mt-4">
+          NovaTech Solutions is a full-service digital agency delivering premium web,
+          mobile, and branding solutions.
         </p>
-        <a href="#contact" class="btn btn-primary btn-lg mt-4">Work With Us</a>
+        <a href="#contact" class="btn btn-primary btn-lg mt-4">Let’s Work Together</a>
       </div>
       <div class="col-lg-6 text-center">
         <img src="https://images.unsplash.com/photo-1605379399642-870262d3d051"
@@ -213,28 +208,28 @@ footer {
     <div class="row g-4">
       <div class="col-md-4">
         <div class="card">
-          <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085" class="card-img-top">
+          <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085" class="img-fluid">
           <div class="card-body">
-            <h6>SaaS Company Website</h6>
-            <p class="text-muted small">Corporate website with dashboard</p>
+            <h6>SaaS Business Platform</h6>
+            <p class="small">Corporate dashboard & analytics system</p>
           </div>
         </div>
       </div>
       <div class="col-md-4">
         <div class="card">
-          <img src="https://images.unsplash.com/photo-1559028012-481c04fa702d" class="card-img-top">
+          <img src="https://images.unsplash.com/photo-1559028012-481c04fa702d" class="img-fluid">
           <div class="card-body">
-            <h6>E-Commerce Platform</h6>
-            <p class="text-muted small">Scalable online store</p>
+            <h6>E-Commerce Solution</h6>
+            <p class="small">Scalable online store for brands</p>
           </div>
         </div>
       </div>
       <div class="col-md-4">
         <div class="card">
-          <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f" class="card-img-top">
+          <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f" class="img-fluid">
           <div class="card-body">
             <h6>Startup Landing Page</h6>
-            <p class="text-muted small">High-conversion landing design</p>
+            <p class="small">High-conversion marketing website</p>
           </div>
         </div>
       </div>
@@ -245,22 +240,22 @@ footer {
 <!-- TEAM -->
 <section id="team">
   <div class="container">
-    <h2 class="text-center fw-bold mb-5">Meet Our Team</h2>
-    <div class="row g-4 justify-content-center">
+    <h2 class="text-center fw-bold mb-5">Our Leadership</h2>
+    <div class="row justify-content-center g-4">
       <div class="col-md-3 text-center">
         <img src="https://randomuser.me/api/portraits/men/32.jpg" class="team-img mb-3">
         <h6>Alex Morgan</h6>
-        <p class="text-muted small">Founder & CEO</p>
+        <p class="small">Founder & CEO</p>
       </div>
       <div class="col-md-3 text-center">
         <img src="https://randomuser.me/api/portraits/women/44.jpg" class="team-img mb-3">
         <h6>Sarah Khan</h6>
-        <p class="text-muted small">UI/UX Designer</p>
+        <p class="small">Creative Director</p>
       </div>
       <div class="col-md-3 text-center">
         <img src="https://randomuser.me/api/portraits/men/65.jpg" class="team-img mb-3">
         <h6>John Smith</h6>
-        <p class="text-muted small">Lead Developer</p>
+        <p class="small">Lead Engineer</p>
       </div>
     </div>
   </div>
@@ -279,7 +274,7 @@ footer {
       <div class="col-md-7">
         <form class="row g-3">
           <input class="form-control" placeholder="Your Name">
-          <input class="form-control" placeholder="Email">
+          <input class="form-control" placeholder="Your Email">
           <textarea class="form-control" rows="4" placeholder="Message"></textarea>
           <button class="btn btn-primary">Send Message</button>
         </form>
@@ -297,7 +292,9 @@ footer {
 <script>
 function toggleTheme() {
   document.body.classList.toggle("dark");
+  document.getElementById("themeIcon").classList.toggle("bi-sun");
 }
 </script>
+
 </body>
 </html>
