@@ -10,49 +10,77 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 
-<style>
+
+  <style>
+/* ===============================
+   THEME VARIABLES
+================================ */
 :root {
   --bg: #ffffff;
-  --bg-secondary: #f5f7fa;
+  --bg-secondary: #f1f5f9;
   --text: #0f172a;
-  --text-muted: #64748b;
+  --text-muted: #475569;
   --card: #ffffff;
   --accent: #0d6efd;
+  --border: rgba(0,0,0,0.08);
 }
 
 body.dark {
   --bg: #0b0f19;
   --bg-secondary: #111827;
-  --text: #e5e7eb;
-  --text-muted: #9ca3af;
+  --text: #f1f5f9;        /* MAIN TEXT FIX */
+  --text-muted: #cbd5e1; /* MUTED TEXT FIX */
   --card: #0f172a;
   --accent: #3b82f6;
+  --border: rgba(255,255,255,0.08);
 }
 
+/* ===============================
+   GLOBAL STYLES
+================================ */
 body {
   font-family: 'Inter', sans-serif;
   background: var(--bg);
   color: var(--text);
-  transition: all 0.3s ease;
+  transition: background 0.3s ease, color 0.3s ease;
 }
 
 section {
   padding: 90px 0;
 }
 
+h1, h2, h3, h4, h5, h6 {
+  color: var(--text);
+}
+
+p, span, li, small, label {
+  color: var(--text-muted);
+}
+
+/* ===============================
+   NAVBAR
+================================ */
 .navbar {
   background: var(--bg);
-  border-bottom: 1px solid rgba(0,0,0,0.05);
+  border-bottom: 1px solid var(--border);
 }
 
 .navbar-brand {
   font-weight: 700;
+  color: var(--text) !important;
 }
 
 .nav-link {
   color: var(--text) !important;
 }
 
+.nav-link:hover {
+  color: var(--accent) !important;
+}
+
+/* ===============================
+   HERO
+================================ */
 .hero {
   background: linear-gradient(135deg, var(--bg-secondary), var(--bg));
 }
@@ -62,35 +90,74 @@ section {
   font-weight: 700;
 }
 
+/* ===============================
+   CARDS
+================================ */
 .card {
   background: var(--card);
-  border: none;
+  border: 1px solid var(--border);
   border-radius: 16px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.06);
-  transition: transform 0.3s;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+  transition: transform 0.3s, box-shadow 0.3s;
 }
 
 .card:hover {
   transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.15);
 }
 
+.card h6 {
+  color: var(--text);
+}
+
+/* ===============================
+   TEAM
+================================ */
 .team-img {
   width: 140px;
   height: 140px;
   border-radius: 50%;
   object-fit: cover;
+  border: 3px solid var(--accent);
 }
 
+/* ===============================
+   FORMS (IMPORTANT FIX)
+================================ */
+.form-control {
+  background: var(--bg);
+  color: var(--text);
+  border: 1px solid var(--border);
+}
+
+.form-control::placeholder {
+  color: var(--text-muted);
+}
+
+.form-control:focus {
+  background: var(--bg);
+  color: var(--text);
+  border-color: var(--accent);
+  box-shadow: none;
+}
+
+/* ===============================
+   FOOTER
+================================ */
 footer {
   background: var(--bg-secondary);
   color: var(--text-muted);
 }
 
+/* ===============================
+   THEME BUTTON
+================================ */
 .theme-btn {
-  border: 1px solid var(--text-muted);
+  border: 1px solid var(--border);
   background: transparent;
   color: var(--text);
 }
+
 </style>
 </head>
 
